@@ -33,7 +33,7 @@ export const App: FC = () => {
     resetEditing();
   }
 
-  const onDeleteStudent = (record: Student) => {
+  const onDeleteStudent = (record: Student): void => {
     Modal.confirm({
       title: 'Вы уверены, что хотите удалить запись о клиенте?',
       okText: 'Удалить',
@@ -46,13 +46,13 @@ export const App: FC = () => {
     });
   }
 
-  const onEditStudent = (record: Student) => {
+  const onEditStudent = (record: Student): void => {
     setIsEditing(true);
     setIsOpen(true);
     setEditingStudent({ ...record });
   };
 
-  const handleEdit = () => {
+  const handleEdit = (): void => {
     if (!editingStudent.fullName || !editingStudent.groupNumber || !editingStudent.courseNumber) {
       return;
     }
@@ -69,7 +69,7 @@ export const App: FC = () => {
     resetEditing();
   }
 
-  const resetEditing = useCallback(() => {
+  const resetEditing = useCallback((): void => {
     setIsEditing(false);
     setEditingStudent({
       id: 0,
@@ -79,17 +79,17 @@ export const App: FC = () => {
     });
   }, [])
 
-  const handleCancel = useCallback(() => {
+  const handleCancel = useCallback((): void => {
     setIsOpen(false);
     resetEditing();
   }, [])
 
-  const openOnAdd = useCallback(() => {
+  const openOnAdd = useCallback((): void => {
     setIsOpen(true);
     setIsEditing(false);
   }, [])
 
-  const isDisabled = useMemo(() => !editingStudent?.fullName
+  const isDisabled = useMemo((): boolean => !editingStudent?.fullName
     || !editingStudent?.groupNumber
     || !editingStudent?.courseNumber,
     [editingStudent?.fullName, editingStudent?.groupNumber, editingStudent?.courseNumber]
